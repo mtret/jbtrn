@@ -32,11 +32,6 @@ Fix privileges (if needed):
  make chmod 
 ```
 
-Prepare db schema:
-```
-make schema-init
-```
-
 Run migrations:
 ```
 make migrate
