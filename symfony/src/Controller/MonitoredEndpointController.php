@@ -87,7 +87,7 @@ class MonitoredEndpointController extends FOSRestController {
         /** @var MonitoredEndpoint $oldEndpoint */
         $oldEndpoint = $repository->find($id);
 
-        if (!$oldEndpoint || ($oldEndpoint->isSelfOwned($this->getUser()->getId()))) {
+        if (!$oldEndpoint || (!$oldEndpoint->isSelfOwned($this->getUser()->getId()))) {
             return $this->handleView($this->view(['status'=>'Resource not found', 'id' => $id],Response::HTTP_BAD_REQUEST));
         }
 
@@ -120,7 +120,7 @@ class MonitoredEndpointController extends FOSRestController {
         /** @var MonitoredEndpoint $oldEndpoint */
         $oldEndpoint = $repository->find($id);
 
-        if (!$oldEndpoint || ($oldEndpoint->isSelfOwned($this->getUser()->getId()))) {
+        if (!$oldEndpoint || (!$oldEndpoint->isSelfOwned($this->getUser()->getId()))) {
             return $this->handleView($this->view(['status'=>'Resource not found', 'id' => $id],Response::HTTP_BAD_REQUEST));
         }
 

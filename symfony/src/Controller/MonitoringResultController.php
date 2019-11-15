@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\MonitoredEndpoint;
-use App\Entity\MonitoringResult;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/api")
@@ -23,7 +23,11 @@ class MonitoringResultController extends FOSRestController {
         /** @var MonitoredEndpoint $endpoint */
         $endpoint = $repository->findOneBy(['id' => $id, 'owner' => $this->getUser()->getId()]);
 
-        return $this->handleView($this->view($endpoint->getMonitoringResultsLimited(10)));
+        if ($endpoint) {
+            return $this->handleView($this->view($endpoint->getMonitoringResultsLimited(10)));
+        }
+
+        return $this->handleView($this->view(['status'=>'Resource not found', 'id' => $id],Response::HTTP_BAD_REQUEST));
     }
 
 }
