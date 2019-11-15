@@ -48,6 +48,7 @@
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/sensio/framework-extra-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/stof/doctrine-extensions-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/cache" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/cache-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/config" />
@@ -78,7 +79,8 @@
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/polyfill-php73" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/property-access" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/routing" />
-      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/security-core" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/security" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/security-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/service-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/stopwatch" />
       <excludeFolder url="file://$MODULE_DIR$/symfony/vendor/symfony/translation-contracts" />

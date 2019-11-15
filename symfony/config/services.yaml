@@ -28,3 +28,10 @@ services:
 
     sensio_framework_extra.view.listener:
         alias: Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener
+
+    jms_serializer.naming_strategy:
+        alias: jms_serializer.identical_property_naming_strategy
+
+    App\Event\ApiControllerRequest:
+        tags:
+            - { name: kernel.event_subscriber}

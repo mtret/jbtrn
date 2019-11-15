@@ -4,12 +4,9 @@ namespace App\Controller;
 
 use App\Entity\MonitoredEndpoint;
 use App\Entity\MonitoringResult;
-use App\Form\MonitoredEndpointType;
 use FOS\RestBundle\Controller\FOSRestController;
-use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/api")
@@ -17,14 +14,16 @@ use Symfony\Component\HttpFoundation\Response;
 class MonitoringResultController extends FOSRestController {
 
     /**
-     * @Rest\Get("/monitoring-endpoints")
+     * @Rest\Get("/monitoring-results/{id}"), requirements={"id" = "\d+"})
      */
-    public function getMonitoringResultsEndpoints()
+    public function getMonitoringResults($id)
     : \Symfony\Component\HttpFoundation\Response {
-        $repository= $this->getDoctrine()->getRepository(MonitoringResult::class);
-        $endpoints = $repository->findAll();
+        $repository= $this->getDoctrine()->getRepository(MonitoredEndpoint::class);
 
-        return $this->handleView($this->view($endpoints));
+        /** @var MonitoredEndpoint $endpoint */
+        $endpoint = $repository->findOneBy(['id' => $id, 'owner' => $this->getUser()->getId()]);
+
+        return $this->handleView($this->view($endpoint->getMonitoringResultsLimited(10)));
     }
 
 }

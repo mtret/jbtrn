@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MonitoredEndpointRepository")
@@ -15,6 +15,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class MonitoredEndpoint
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -25,44 +26,53 @@ class MonitoredEndpoint
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\Url
+     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $url;
 
     /**
-     * @ORM\Column(type="date")
-     * @Assert\DateTime()
-     * @Gedmo\Timestampable(on="create")
+     * @Serializer\Type("DateTime<'Y-m-d H:i:s'>")
+     * @ORM\Column(type="datetime")
+     * @Assert\NotNull
+     * @Assert\NotBlank
      */
     private $dateCreated;
 
     /**
-     * @ORM\Column(type="date")
-     * @Assert\DateTime()
+     * @Serializer\Type("DateTime<'Y-m-d H:i:s'>")
+     * @ORM\Column(type="datetime")
+     * @Assert\NotNull
+     * @Assert\NotBlank
      */
     private $dateLastChecked;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Positive()
+     * @Assert\NotNull
+     * @Assert\NotBlank
+     * @Assert\Positive
      */
     private $monitoredInterval;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="monitoredEndpoints")
-     * @Assert\NotNull()
+     * @Assert\NotNull
      * @Serializer\Exclude()
      */
     private $owner;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MonitoringResult", mappedBy="monitoredEndpoint")
+     * @ORM\OneToMany(targetEntity="App\Entity\MonitoringResult", mappedBy="monitoredEndpoint", cascade={"remove"})
      * @Serializer\Exclude()
+     * @OrderBy({"id" = "DESC"})
      */
     private $monitoringResults;
 
@@ -74,6 +84,13 @@ class MonitoredEndpoint
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -156,6 +173,15 @@ class MonitoredEndpoint
         return $this->monitoringResults;
     }
 
+    /**
+     * @param $limit
+     * @return Collection|MonitoringResult[]
+     */
+    public function getMonitoringResultsLimited($limit)
+    {
+        return $this->monitoringResults->slice(0,$limit);
+    }
+
     public function addMonitoringResult(MonitoringResult $monitoringResult): self
     {
         if (!$this->monitoringResults->contains($monitoringResult)) {
@@ -177,5 +203,13 @@ class MonitoredEndpoint
         }
 
         return $this;
+    }
+
+    /**
+     * @param int $ownerId
+     * @return bool
+     */
+    public function isSelfOwned($ownerId) {
+        return $this->getOwner()->getId() == $ownerId;
     }
 }

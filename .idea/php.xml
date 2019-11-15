@@ -71,7 +71,6 @@
       <path value="$PROJECT_DIR$/symfony/vendor/symfony/polyfill-intl-icu" />
       <path value="$PROJECT_DIR$/symfony/vendor/behat/transliterator" />
       <path value="$PROJECT_DIR$/symfony/vendor/gedmo/doctrine-extensions" />
-      <path value="$PROJECT_DIR$/symfony/vendor/symfony/security-core" />
       <path value="$PROJECT_DIR$/symfony/vendor/friendsofsymfony/rest-bundle" />
       <path value="$PROJECT_DIR$/symfony/vendor/willdurand/negotiation" />
       <path value="$PROJECT_DIR$/symfony/vendor/willdurand/jsonp-callback-validator" />
@@ -92,6 +91,9 @@
       <path value="$PROJECT_DIR$/symfony/vendor/hoa/visitor" />
       <path value="$PROJECT_DIR$/symfony/vendor/hoa/protocol" />
       <path value="$PROJECT_DIR$/symfony/vendor/sensio/framework-extra-bundle" />
+      <path value="$PROJECT_DIR$/symfony/vendor/symfony/security" />
+      <path value="$PROJECT_DIR$/symfony/vendor/symfony/security-bundle" />
+      <path value="$PROJECT_DIR$/symfony/vendor/stof/doctrine-extensions-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
