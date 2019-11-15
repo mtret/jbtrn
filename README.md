@@ -118,7 +118,7 @@ X-AUTH-TOKEN: dcb20f8a-5657-4f1b-9f7f-ce65739b359e
 
 #### /api/monitored-endpoints
 
-Lists all endpopints of given user (user is identified by the token in X-AUTH-TOKEN header.
+Lists all endpopints of given user (user is identified by the token in X-AUTH-TOKEN header).
 
 ```
 GET http://localhost/api/monitored-endpoints
