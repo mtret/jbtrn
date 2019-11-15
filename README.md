@@ -37,6 +37,11 @@ Run migrations:
 make migrate
 ```
 
+Run tests:
+```
+make tests
+```
+
 
 ## Requesting data
 

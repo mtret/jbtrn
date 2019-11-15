@@ -17,4 +17,4 @@ migrate:
 	docker-compose exec php bin/console doctrine:migration:migrate
 
 tests:
-	docker-compose exec php bin/codeception
+	docker-compose exec php vendor/bin/codecept run
